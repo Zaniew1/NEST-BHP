@@ -1,0 +1,10 @@
+### All Rest api requests
+
+POST http://localhost:3000/company
+content-type: application/json
+
+{
+    "name":"asd",
+    "nip":123123123,
+    "adress":"asd"
+}
