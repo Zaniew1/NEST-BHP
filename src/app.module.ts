@@ -7,9 +7,10 @@ import { WorkerModule } from './worker/worker.module';
 import { TrainingModule } from './training/training.module';
 import { WorkerController } from './worker/controller/worker.controller';
 import { TrainingController } from './training/controller/training.controller';
+import { PrismaModule } from 'nestjs-prisma';
 
 @Module({
-  imports: [CompanyModule, WorkerModule, TrainingModule],
+  imports: [PrismaModule.forRoot(), CompanyModule, WorkerModule, TrainingModule],
   controllers: [AppController, CompanyController, WorkerController, TrainingController],
   providers: [AppService],
 })
