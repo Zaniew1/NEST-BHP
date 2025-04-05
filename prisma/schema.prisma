@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company{
+  id Int @id @default (autoincrement())
+  nip Int
+  name String
+  regon Int
+  pkd String
+  postalCode String
+  city String
+  street String
+  phoneNumber BigInt
+  email String
+  notes String
+  updatedAt DateTime @updatedAt
+  createdAt  DateTime   @default(now())
+  workers Worker[]
+  trainings Training[]
+}
+model Worker{
+  id Int @id @default (autoincrement())
+  name String
+  surname String
+  secondName String?
+  sex String?
+  trainingEntry DateTime?
+  trainingPeriodic DateTime?
+  medicalExamination DateTime?
+  company Company @relation(fields: [companyId], references: [id])
+  companyId Int @unique
+  department String?
+  employmentForm String?
+  absence String?
+  pesel BigInt?
+  IdCardNumber String?
+  dateOfBirth DateTime?
+  placeOfBirth String?
+  disability Boolean?
+  postalCode String?
+  city String?
+  street String?
+  phoneNumber BigInt?
+  email String?
+  position String?
+  positionType String?
+  positionSection String?
+  positionNotes String
+  youth Boolean?
+  nightShift Boolean?
+  notes String
+  updatedAt DateTime @updatedAt
+  createdAt  DateTime   @default(now())
+}
+model Training{
+  id Int @id @default (autoincrement())
+  number String
+  company Company @relation(fields: [companyId], references: [id])
+  companyId Int @unique
+  trainingType String
+  trainingForm String
+  trainingDate DateTime
+  trainingValidity DateTime
+
+  createdAt  DateTime   @default(now())
+  updatedAt DateTime @updatedAt
+}

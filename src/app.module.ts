@@ -7,11 +7,18 @@ import { WorkerModule } from './worker/worker.module';
 import { TrainingModule } from './training/training.module';
 import { WorkerController } from './worker/controller/worker.controller';
 import { TrainingController } from './training/controller/training.controller';
-import { PrismaModule } from 'nestjs-prisma';
-
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { PrismaService } from './prisma/prisma.service';
+// ,PrismaModule.forRoot()
 @Module({
-  imports: [PrismaModule.forRoot(), CompanyModule, WorkerModule, TrainingModule],
+  imports: [ GraphQLModule.forRoot<ApolloDriverConfig>({
+    driver: ApolloDriver,
+    autoSchemaFile: join( process.cwd(), './src/graph.gql'),
+    sortSchema: true
+  }), CompanyModule, WorkerModule, TrainingModule],
   controllers: [AppController, CompanyController, WorkerController, TrainingController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}
