@@ -15,36 +15,38 @@ datasource db {
 
 model Company{
   id Int @id @default (autoincrement())
-  nip Int
+  author Int 
   name String
-  regon Int
-  pkd String
-  postalCode String
-  city String
-  street String
-  phoneNumber BigInt
-  email String
-  notes String
-  updatedAt DateTime @updatedAt
-  createdAt  DateTime   @default(now())
-  workers Worker[]
-  trainings Training[]
+  nip Int
+  regon Int?
+  pkd String?
+  postalCode String?
+  city String?
+  street String?
+  phoneNumber Int?
+  email String?
+  notes String?
+  // updatedAt DateTime @updatedAt
+  // createdAt  DateTime   @default(now())
+  // workers Worker[]
+  // trainings Training[]
 }
 model Worker{
   id Int @id @default (autoincrement())
   name String
   surname String
+  author Int 
   secondName String?
   sex String?
   trainingEntry DateTime?
   trainingPeriodic DateTime?
   medicalExamination DateTime?
-  company Company @relation(fields: [companyId], references: [id])
+  // company Company @relation(fields: [companyId], references: [id])
   companyId Int @unique
   department String?
   employmentForm String?
   absence String?
-  pesel BigInt?
+  pesel Int?
   IdCardNumber String?
   dateOfBirth DateTime?
   placeOfBirth String?
@@ -52,28 +54,35 @@ model Worker{
   postalCode String?
   city String?
   street String?
-  phoneNumber BigInt?
+  phoneNumber Int?
   email String?
   position String?
   positionType String?
   positionSection String?
-  positionNotes String
+  positionNotes String?
   youth Boolean?
   nightShift Boolean?
-  notes String
+  notes String?
   updatedAt DateTime @updatedAt
   createdAt  DateTime   @default(now())
 }
 model Training{
   id Int @id @default (autoincrement())
   number String
-  company Company @relation(fields: [companyId], references: [id])
+  author Int 
+  // company Company @relation(fields: [companyId], references: [id])
   companyId Int @unique
+  companyDepartment Int
+  companyNip Int
+  companyPkd String?
+  companyPostalCode String?
+  companyCity String?
+  companyStreet String?
   trainingType String
   trainingForm String
   trainingDate DateTime
   trainingValidity DateTime
-
+  program String?
   createdAt  DateTime   @default(now())
   updatedAt DateTime @updatedAt
 }

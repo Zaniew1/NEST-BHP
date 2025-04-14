@@ -1,0 +1,82 @@
+# export const typeDefs = `#graphql
+
+type Company {
+    id: ID!
+    name: String!
+    nip: Int
+    adress: String
+    regon: Int
+    pkd: String
+    postalCode: String
+    city: String
+    street: String
+    phoneNumber: Int
+    email: String
+    notes: String
+}
+type Worker{
+    id: ID!
+    name: String!
+    surname: String!
+    # author: Int
+    # secondName: String
+    # sex: String
+    # trainingEntry: String
+    # trainingPeriodic: String
+    # medicalExamination: String
+    # department: String
+    # employmentForm: String
+    # absence: String
+    # pesel: Int
+    # IdCardNumber: String
+    # dateOfBirth: String
+    # placeOfBirth: String
+    # disability: Boolean
+    # postalCode: String
+    # city: String
+    # street: String
+    # phoneNumber: Int
+    # email: String
+    # position: String
+    # positionType: String
+    # positionSection: String
+    # positionNotes: String
+    # youth: Boolean
+    # nightShift: Boolean
+    # notes: String
+}
+
+type Query{
+    companies: [Company]
+    workers: [Worker]
+    
+
+}
+type Mutation{
+    createCompany(data: CreateCompanyInput ): Company
+    updateCompany(data: UpdateCompanyInput): Company
+    deleteCompany(data: DeleteCompanyInput): Company
+    createWorker(data: CreateWorkerInput): Worker
+
+}
+input CreateCompanyInput{
+    id: ID!
+    name: String!
+    nip: Int!
+}
+input UpdateCompanyInput{
+    id: ID!
+    name: String
+    nip: Int
+}
+input DeleteCompanyInput{
+    id: ID!
+}
+
+
+
+input CreateWorkerInput{
+    id: ID!
+    name: String!
+    surname: String!
+}

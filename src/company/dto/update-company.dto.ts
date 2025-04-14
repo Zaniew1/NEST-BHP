@@ -1,6 +1,6 @@
 import { ZodValidationPipe, createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
-const CompanyCreateSchema = z.object({
+const CompanyUpdateSchema = z.object({
     id: z.number(),
     name: z.string().min(3).max(50),
     nip: z.number(),
@@ -14,5 +14,5 @@ const CompanyCreateSchema = z.object({
     email: z.string().nullable(),
     notes: z.string().nullable(),
   });
-export class CreateCompanyDto extends createZodDto(CompanyCreateSchema){
+export class UpdateCompanyDto extends createZodDto(CompanyUpdateSchema){
 }

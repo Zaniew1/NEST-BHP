@@ -1,10 +1,29 @@
-### All Rest api requests
+# All api requests for company endpoint
 
-POST http://localhost:3000/company
+
+### Create Company
+POST http://localhost:3000/createCompany
+content-type: application/json
+
+{
+    "id": 1,
+    "name":"asd2",
+    "nip":123123123,
+}
+
+### Update Company
+PUT http://localhost:3000/company/1
 content-type: application/json
 
 {
     "name":"asd",
-    "nip":123123123,
-    "adress":"asd"
 }
+
+### Get all Companies
+GET http://localhost:3000/company
+
+### Get one company
+GET http://localhost:3000/company/1
+
+### Delete company
+DELETE http://localhost:3000/company/1
